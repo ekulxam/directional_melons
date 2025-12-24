@@ -9,6 +9,6 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 @Mixin(FabricDataGenerator.class)
 public interface FabricDataGeneratorAccessor {
     @Mutable
-    @Accessor("modContainer")
+    @Accessor(value = "modContainer", remap = false)
     void directional_melons$setModContainer(ModContainer modContainer);
 }
