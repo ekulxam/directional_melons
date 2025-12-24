@@ -12,6 +12,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import survivalblock.directional_melons.mixin.BlockBehaviourAccessor;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -35,8 +36,8 @@ public class DirectionalMelons implements ModInitializer {
     }
 
     public static boolean canNowRotate(Block block) {
-        Optional<ResourceKey<Block>> optional = BuiltInRegistries.BLOCK.getResourceKey(block);
-        return optional.isPresent() && canNowRotate(optional.get());
+        ResourceKey<Block> resourceKey = ((BlockBehaviourAccessor.PropertiesAccessor) block.properties()).directional_melons$getId();
+        return canNowRotate(resourceKey);
     }
 
     public static boolean canNowRotate(ResourceKey<Block> resourceKey) {

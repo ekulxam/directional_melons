@@ -3,13 +3,19 @@
   "package": "survivalblock.directional_melons.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "BlockBehaviourAccessor",
+    "BlockBehaviourAccessor$PropertiesAccessor",
     "BlockBehaviourMixin",
-    "BlockMixin"
+    "BlockMixin",
+    "FabricDataGeneratorAccessor"
   ],
   "injectors": {
     "defaultRequire": 1
   },
   "overwrites": {
     "requireAnnotations": true
-	}
+  },
+  "client": [
+    "client.BlockModelGeneratorsAccessor"
+  ]
 }

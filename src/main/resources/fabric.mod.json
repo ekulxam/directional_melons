@@ -19,7 +19,7 @@
 			"survivalblock.directional_melons.DirectionalMelons"
 		],
 		"fabric-datagen": [
-			"survivalblock.directional_melons.DirectionalMelonsDataGenerator"
+          "survivalblock.directional_melons.datagen.DirectionalMelonsDataGenerator"
 		]
 	},
 	"mixins": [
