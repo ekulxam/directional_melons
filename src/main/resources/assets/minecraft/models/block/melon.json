@@ -1,12 +1,7 @@
 {
-  "parent": "block/cube",
+  "parent": "directional_melons:block/directional_melon",
   "textures": {
-    "particle": "block/melon_side",
-    "down": "block/melon_side",
-    "up": "block/melon_side",
-    "north": "block/melon_end",
-    "east": "block/melon_side",
-    "south": "block/melon_end",
-    "west": "block/melon_side"
+    "end": "block/melon_top",
+    "side": "block/melon_side"
   }
 }

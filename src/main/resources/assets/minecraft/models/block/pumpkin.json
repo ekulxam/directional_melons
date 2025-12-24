@@ -1,0 +1,14 @@
+{
+  "parent": "directional_melons:block/directional_melon",
+  "textures": {
+    "end": "block/pumpkin_top",
+    "side": "block/pumpkin_side"
+  },
+  "display": {
+    "firstperson_righthand": {
+      "rotation": [ 0, 135, 0 ],
+      "translation": [ 0, 0, 0 ],
+      "scale": [ 0.40, 0.40, 0.40 ]
+    }
+  }
+}

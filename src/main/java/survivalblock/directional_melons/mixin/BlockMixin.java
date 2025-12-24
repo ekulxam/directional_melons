@@ -30,7 +30,7 @@ public abstract class BlockMixin {
         if (!DirectionalMelons.canNowRotate((Block) (Object) this)) {
             return;
         }
-        this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.SOUTH));
+        this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.UP));
     }
 
     @Inject(method = "createBlockStateDefinition", at = @At("RETURN"))
