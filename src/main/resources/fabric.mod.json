@@ -1,0 +1,34 @@
+{
+	"schemaVersion": 1,
+	"id": "directional_melons",
+	"version": "${version}",
+	"name": "Directional Melons",
+	"description": "Adds directional melons to Minecraft",
+	"authors": [
+		"Survivalblock"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "MIT",
+	"icon": "assets/directional_melons/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"survivalblock.directional_melons.DirectionalMelons"
+		],
+		"fabric-datagen": [
+			"survivalblock.directional_melons.DirectionalMelonsDataGenerator"
+		]
+	},
+	"mixins": [
+		"directional_melons.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.18.3",
+		"minecraft": "~1.21.11",
+		"java": ">=21",
+		"fabric-api": "*"
+	}
+}
