@@ -74,7 +74,7 @@ tasks.processResources {
         )
     }
 }
-
+/*
 tasks.named("build") {
     finalizedBy("autoVersionChangelog")
 }
@@ -97,6 +97,7 @@ tasks.register("autoVersionChangelog") {
         println("Changelog header successfully replaced as $title")
     }
 }
+ */
 
 loom {
     runConfigs.all {
