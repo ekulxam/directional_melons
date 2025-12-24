@@ -3,13 +3,14 @@
 	"id": "directional_melons",
 	"version": "${version}",
 	"name": "Directional Melons",
-	"description": "Adds directional melons to Minecraft",
+	"description": "Adds directional Melons and Pumpkins",
 	"authors": [
 		"Survivalblock"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://modrinth.com/mod/directional_melons",
+		"sources": "https://github.com/ekulxam/directional_melons",
+        "issues": "https://github.com/ekulxam/directional_melons/issues"
 	},
 	"license": "MIT",
 	"icon": "assets/directional_melons/icon.png",
@@ -27,7 +28,6 @@
 	],
 	"depends": {
 		"fabricloader": ">=0.18.3",
-		"minecraft": "~1.21.11",
 		"java": ">=21",
 		"fabric-api": "*"
 	}
