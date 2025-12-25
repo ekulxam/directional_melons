@@ -45,7 +45,7 @@ public class DirectionalMelons implements ModInitializer {
 
     public static boolean canNowRotate(Block block) {
         //? <=1.21.1 {
-        /*if (changing || changed.contains(block)) {
+        /*if (changing || (changed != null && changed.contains(block))) {
             changed.add(block);
             changing = false;
             return true;
