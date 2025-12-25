@@ -55,7 +55,7 @@ public class DirectionalMelons implements ModInitializer {
         //? >=1.21.2 {
         ResourceKey<Block> resourceKey = ((BlockBehaviourAccessor.PropertiesAccessor) block.properties()).directional_melons$getId();
         return canNowRotate(resourceKey);
-        //?} else if <=1.21.1 && >=1.20.4 {
+        //?} else if <=1.21.1 && >=1.20.3 {
         /*Optional<ResourceKey<Block>> optional = BuiltInRegistries.BLOCK.getResourceKey(block);
         return optional.isPresent() && canNowRotate(optional.get());
         *///?} else {
@@ -63,7 +63,7 @@ public class DirectionalMelons implements ModInitializer {
         *///?}
     }
 
-    //? >=1.20.4 {
+    //? >=1.20.3 {
     public static boolean canNowRotate(ResourceKey<Block> resourceKey) {
         return Objects.equals(resourceKey, net.minecraft.references.Blocks.MELON) ||
                 Objects.equals(resourceKey, net.minecraft.references.Blocks.PUMPKIN);

@@ -16,7 +16,7 @@ import survivalblock.directional_melons.DirectionalMelons;
 public class BlocksMixin {
 
     @Inject(method = "<clinit>", at = {
-            //? >=1.20.4 {
+            //? >=1.20.3 {
             @At(value = "FIELD", target = "Lnet/minecraft/references/Blocks;MELON:Lnet/minecraft/resources/ResourceKey;", shift = At.Shift.AFTER, ordinal = 0, opcode = Opcodes.GETSTATIC),
             @At(value = "FIELD", target = "Lnet/minecraft/references/Blocks;PUMPKIN:Lnet/minecraft/resources/ResourceKey;", shift = At.Shift.AFTER, ordinal = 0, opcode = Opcodes.GETSTATIC)
             //?} else {
