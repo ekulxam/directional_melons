@@ -55,13 +55,12 @@ public class DirectionalMelons implements ModInitializer {
         //? >=1.21.2 {
         ResourceKey<Block> resourceKey = ((BlockBehaviourAccessor.PropertiesAccessor) block.properties()).directional_melons$getId();
         return canNowRotate(resourceKey);
-        //?}
-        //? <=1.21.1 && >=1.20.4 {
+        //?} else if <=1.21.1 && >=1.20.4 {
         /*Optional<ResourceKey<Block>> optional = BuiltInRegistries.BLOCK.getResourceKey(block);
         return optional.isPresent() && canNowRotate(optional.get());
         *///?} else {
-        return Objects.equals(block, Blocks.MELON) || Objects.equals(block, Blocks.PUMPKIN);
-        //?}
+        /*return Objects.equals(block, Blocks.MELON) || Objects.equals(block, Blocks.PUMPKIN);
+        *///?}
     }
 
     //? >=1.20.4 {
