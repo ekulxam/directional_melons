@@ -16,6 +16,10 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.data.models.BlockModelGenerators;
 import net.minecraft.data.models.ItemModelGenerators;
 import net.minecraft.data.models.blockstates.MultiVariantGenerator;
+import net.minecraft.data.models.blockstates.Variant;
+import net.minecraft.data.models.blockstates.VariantProperties;
+import net.minecraft.data.models.model.ModelLocationUtils;
+import net.minecraft.resources.Identifier;
 *///?}
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -42,8 +46,9 @@ public class DirectionalMelonsModelGenerator extends FabricModelProvider {
     }
 
     private void createDirectional(BlockModelGenerators generator, Block block) {
+        Identifier blockId = ModelLocationUtils.getModelLocation(block);
         //? if >=1.21.2 {
-        MultiVariant multiVariant = BlockModelGenerators.plainVariant(ModelLocationUtils.getModelLocation(block));
+        MultiVariant multiVariant = BlockModelGenerators.plainVariant();
         generator.blockStateOutput
                 .accept(
                         MultiVariantGenerator.dispatch(block, multiVariant)
@@ -52,7 +57,7 @@ public class DirectionalMelonsModelGenerator extends FabricModelProvider {
         //?} else {
         /*generator.blockStateOutput
                 .accept(
-                        MultiVariantGenerator.multiVariant(block)
+                        MultiVariantGenerator.multiVariant(block, Variant.variant().with(VariantProperties.MODEL, blockId))
                                 .with(BlockModelGenerators.createFacingDispatch())
                 );
         *///?}
