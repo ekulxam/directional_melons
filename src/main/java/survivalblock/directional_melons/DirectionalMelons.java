@@ -6,14 +6,17 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DirectionalBlock;
-import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+//? >=1.21.2
 import survivalblock.directional_melons.mixin.BlockBehaviourAccessor;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -27,6 +30,11 @@ public class DirectionalMelons implements ModInitializer {
 
     public static final EnumProperty<Direction> FACING = DirectionalBlock.FACING;
 
+    //? <=1.21.1 {
+    /*public static boolean changing = false;
+    public static List<Block> changed = new ArrayList<>();
+    *///?}
+
 	@Override
 	public void onInitialize() {
 	}
@@ -36,12 +44,30 @@ public class DirectionalMelons implements ModInitializer {
     }
 
     public static boolean canNowRotate(Block block) {
+        //? <=1.21.1 {
+        /*if (changing || changed.contains(block)) {
+            changed.add(block);
+            changing = false;
+            return true;
+        }
+        *///?}
+
+        //? >=1.21.2 {
         ResourceKey<Block> resourceKey = ((BlockBehaviourAccessor.PropertiesAccessor) block.properties()).directional_melons$getId();
         return canNowRotate(resourceKey);
+        //?}
+        //? <=1.21.1 && >=1.20.4 {
+        /*Optional<ResourceKey<Block>> optional = BuiltInRegistries.BLOCK.getResourceKey(block);
+        return optional.isPresent() && canNowRotate(optional.get());
+        *///?} else {
+        return Objects.equals(block, Blocks.MELON) || Objects.equals(block, Blocks.PUMPKIN);
+        //?}
     }
 
+    //? >=1.20.4 {
     public static boolean canNowRotate(ResourceKey<Block> resourceKey) {
         return Objects.equals(resourceKey, net.minecraft.references.Blocks.MELON) ||
                 Objects.equals(resourceKey, net.minecraft.references.Blocks.PUMPKIN);
     }
+    //?}
 }

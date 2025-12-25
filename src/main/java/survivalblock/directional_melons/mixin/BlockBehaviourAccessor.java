@@ -1,3 +1,4 @@
+//? >=1.21.2 {
 package survivalblock.directional_melons.mixin;
 
 import net.minecraft.resources.ResourceKey;
@@ -14,3 +15,4 @@ public interface BlockBehaviourAccessor {
         ResourceKey<Block> directional_melons$getId();
     }
 }
+//?}

@@ -14,7 +14,7 @@ public class DirectionalMelonsDataGenerator implements DataGeneratorEntrypoint {
 	public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
         Optional<ModContainer> optional = FabricLoader.getInstance().getModContainer(Identifier.DEFAULT_NAMESPACE);
         if (optional.isEmpty()) {
-            return;
+            throw new IllegalStateException("Somehow, the vanilla mod container was not available!");
         }
         ((FabricDataGeneratorAccessor) (Object) fabricDataGenerator).directional_melons$setModContainer(optional.get());
         FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();

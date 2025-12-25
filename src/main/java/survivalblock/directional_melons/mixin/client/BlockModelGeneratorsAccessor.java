@@ -1,3 +1,4 @@
+//? if >=1.21.2 {
 package survivalblock.directional_melons.mixin.client;
 
 import net.minecraft.client.data.models.BlockModelGenerators;
@@ -13,3 +14,4 @@ public interface BlockModelGeneratorsAccessor {
         throw new UnsupportedOperationException();
     }
 }
+//?}
