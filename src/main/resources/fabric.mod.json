@@ -27,8 +27,6 @@
 		"directional_melons.mixins.json"
 	],
 	"depends": {
-		"fabricloader": ">=0.18.3",
-		"java": ">=21",
 		"fabric-api": "*"
 	}
 }
