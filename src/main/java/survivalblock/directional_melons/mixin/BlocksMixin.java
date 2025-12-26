@@ -3,14 +3,12 @@
 
 import net.minecraft.world.level.block.Blocks;
 import org.objectweb.asm.Opcodes;
-import org.spongepowered.asm.mixin.Debug;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import survivalblock.directional_melons.DirectionalMelons;
 
-@Debug(export = true)
 @SuppressWarnings("UnusedMixin")
 @Mixin(Blocks.class)
 public class BlocksMixin {
