@@ -11,8 +11,10 @@ plugins {
     id("dev.kikugie.fletching-table.fabric")
 }
 
-version = "${project.property("mod_version")}+${project.property("deps.minecraft")}"
+version = "${project.property("mod_version")}+${stonecutter.current.version}"
 group = project.property("maven_group") as String
+val minecraft : String = if (hasProperty("deps.minecraft")) project.property("deps.minecraft") as String
+    else stonecutter.current.version
 
 base.archivesName = project.property("archives_base_name") as String
 
@@ -27,14 +29,14 @@ fabricApi {
 
 dependencies {
     // To change the versions see the gradle.properties file
-    minecraft("com.mojang:minecraft:${project.property("deps.minecraft")}")
+    minecraft("com.mojang:minecraft:${minecraft}")
 
     // apply mappings if obfuscated
     @Suppress("UnstableApiUsage")
     mappings (loom.layered {
         officialMojangMappings()
         if (hasProperty("deps.parchment")) {
-            parchment("org.parchmentmc.data:parchment-${project.property("deps.minecraft")}:${property("deps.parchment")}@zip")
+            parchment("org.parchmentmc.data:parchment-${minecraft}:${property("deps.parchment")}@zip")
         }
     })
 
@@ -46,7 +48,7 @@ dependencies {
 
 stonecutter {
     replacements.string {
-        direction = eval(current.version, ">1.21.10")
+        direction = eval(minecraft, ">1.21.10")
         replace("ResourceLocation", "Identifier")
     }
 }
@@ -65,7 +67,7 @@ fletchingTable {
 
 tasks.processResources {
     val modVersion = project.version
-    val minecraftVersion = project.property("deps.minecraft")
+    val minecraftVersion = minecraft
     inputs.property("version", modVersion)
     inputs.property("minecraft", minecraftVersion)
 
@@ -125,7 +127,6 @@ java {
     // If you remove this line, sources will not be generated.
     withSourcesJar()
 
-    val minecraft = project.property("deps.minecraft").toString()
     val java = if (stonecutter.eval(minecraft, ">=26")) {
         JavaVersion.VERSION_25
     } else if (stonecutter.eval(minecraft, ">=1.20.5")) {
