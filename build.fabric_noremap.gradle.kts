@@ -3,12 +3,12 @@ import java.io.FileReader
 import org.gradle.jvm.tasks.Jar
 
 plugins {
-    id("fabric-loom") version "1.14-SNAPSHOT"
+    id("net.fabricmc.fabric-loom")
     id("maven-publish")
-    id("com.modrinth.minotaur") version "2.+"
-    kotlin("jvm") version "2.2.10"
-    id("com.google.devtools.ksp") version "2.2.10-2.0.2"
-    id("dev.kikugie.fletching-table.fabric") version "0.1.0-alpha.22"
+    id("com.modrinth.minotaur")
+    kotlin("jvm")
+    id("com.google.devtools.ksp")
+    id("dev.kikugie.fletching-table.fabric")
 }
 
 version = "${project.property("mod_version")}+${stonecutter.current.project}"
@@ -27,17 +27,16 @@ fabricApi {
 
 dependencies {
     // To change the versions see the gradle.properties file
-    minecraft("com.mojang:minecraft:${stonecutter.current.project}")
-    mappings (loom.layered {
-        officialMojangMappings()
-        if (hasProperty("deps.parchment")) {
-            parchment("org.parchmentmc.data:parchment-${stonecutter.current.project}:${property("deps.parchment")}@zip")
-        }
-    })
-    modImplementation("net.fabricmc:fabric-loader:${project.property("loader_version")}")
+    if (hasProperty("deps.minecraft")) {
+        minecraft("com.mojang:minecraft:${project.property("deps.minecraft")}")
+    } else {
+        minecraft("com.mojang:minecraft:${stonecutter.current.project}")
+    }
+
+    implementation("net.fabricmc:fabric-loader:${project.property("loader_version")}")
 
     // Fabric API. This is technically optional, but you probably want it anyway.
-    modImplementation("net.fabricmc.fabric-api:fabric-api:${project.property("deps.fabric_api")}")
+    implementation("net.fabricmc.fabric-api:fabric-api:${project.property("deps.fabric_api")}")
 }
 
 stonecutter {
@@ -115,18 +114,19 @@ loom {
     }
 }
 
-tasks.withType<JavaCompile>().configureEach {
-    options.release.set(21)
-}
-
 java {
     // Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
     // if it is present.
     // If you remove this line, sources will not be generated.
     withSourcesJar()
 
-    val java = if (stonecutter.eval(stonecutter.current.version, ">=1.20.5"))
-        JavaVersion.VERSION_21 else JavaVersion.VERSION_17
+    val java = if (stonecutter.eval(stonecutter.current.version, ">=26")) {
+        JavaVersion.VERSION_25
+    } else if (stonecutter.eval(stonecutter.current.version, ">=1.20.5")) {
+        JavaVersion.VERSION_21
+    } else {
+        JavaVersion.VERSION_17
+    }
 
     targetCompatibility = java
     sourceCompatibility = java
@@ -144,7 +144,8 @@ modrinth {
     token = providers.environmentVariable("MODRINTH_TOKEN")
     projectId = project.base.archivesName
     version = project.version
-    uploadFile.set(tasks.named<Jar>("remapJar").get().archiveFile)
+    uploadFile.set(tasks.named<Jar>("jar").get().archiveFile)
+    additionalFiles.add(tasks.named<Jar>("sourcesJar").get().archiveFile)
     gameVersions.addAll("${project.property("deps.compatibleVersions")}".split(", ").toList())
     loaders.addAll("${project.property("deps.compatibleLoaders")}".split(", ").toList())
     changelog = rootProject.file("changelog.md").readText()
