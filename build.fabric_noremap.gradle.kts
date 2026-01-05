@@ -11,7 +11,7 @@ plugins {
     id("dev.kikugie.fletching-table.fabric")
 }
 
-version = "${project.property("mod_version")}+${stonecutter.current.project}"
+version = "${project.property("mod_version")}+${project.property("deps.minecraft")}"
 group = project.property("maven_group") as String
 
 base.archivesName = project.property("archives_base_name") as String
@@ -27,11 +27,7 @@ fabricApi {
 
 dependencies {
     // To change the versions see the gradle.properties file
-    if (hasProperty("deps.minecraft")) {
-        minecraft("com.mojang:minecraft:${project.property("deps.minecraft")}")
-    } else {
-        minecraft("com.mojang:minecraft:${stonecutter.current.project}")
-    }
+    minecraft("com.mojang:minecraft:${project.property("deps.minecraft")}")
 
     implementation("net.fabricmc:fabric-loader:${project.property("loader_version")}")
 
@@ -60,7 +56,7 @@ fletchingTable {
 
 tasks.processResources {
     val modVersion = project.version
-    val minecraftVersion = stonecutter.current.version
+    val minecraftVersion = project.property("deps.minecraft")
     inputs.property("version", modVersion)
     inputs.property("minecraft", minecraftVersion)
 
@@ -109,9 +105,9 @@ loom {
 
     fabricModJsonPath = rootProject.file("src/main/resources/fabric.mod.json")
 
-    mixin {
+    /*mixin {
         useLegacyMixinAp = true
-    }
+    }*/
 }
 
 java {
@@ -120,9 +116,10 @@ java {
     // If you remove this line, sources will not be generated.
     withSourcesJar()
 
-    val java = if (stonecutter.eval(stonecutter.current.version, ">=26")) {
+    val minecraft = project.property("deps.minecraft").toString()
+    val java = if (stonecutter.eval(minecraft, ">=26")) {
         JavaVersion.VERSION_25
-    } else if (stonecutter.eval(stonecutter.current.version, ">=1.20.5")) {
+    } else if (stonecutter.eval(minecraft, ">=1.20.5")) {
         JavaVersion.VERSION_21
     } else {
         JavaVersion.VERSION_17

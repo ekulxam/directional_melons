@@ -1,0 +1,27 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "minecraft:block/melon",
+      "x": 90
+    },
+    "facing=east": {
+      "model": "minecraft:block/melon",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "minecraft:block/melon"
+    },
+    "facing=south": {
+      "model": "minecraft:block/melon",
+      "y": 180
+    },
+    "facing=up": {
+      "model": "minecraft:block/melon",
+      "x": 270
+    },
+    "facing=west": {
+      "model": "minecraft:block/melon",
+      "y": 270
+    }
+  }
+}

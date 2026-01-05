@@ -27,9 +27,10 @@ fabricApi {
 
 dependencies {
     // To change the versions see the gradle.properties file
-    minecraft("com.mojang:minecraft:${stonecutter.current.version}")
+    minecraft("com.mojang:minecraft:${project.property("deps.minecraft")}")
 
     // apply mappings if obfuscated
+    @Suppress("UnstableApiUsage")
     mappings (loom.layered {
         officialMojangMappings()
         if (hasProperty("deps.parchment")) {
@@ -64,7 +65,7 @@ fletchingTable {
 
 tasks.processResources {
     val modVersion = project.version
-    val minecraftVersion = stonecutter.current.version
+    val minecraftVersion = project.property("deps.minecraft")
     inputs.property("version", modVersion)
     inputs.property("minecraft", minecraftVersion)
 
@@ -124,9 +125,10 @@ java {
     // If you remove this line, sources will not be generated.
     withSourcesJar()
 
-    val java = if (stonecutter.eval(stonecutter.current.version, ">=26")) {
+    val minecraft = project.property("deps.minecraft").toString()
+    val java = if (stonecutter.eval(minecraft, ">=26")) {
         JavaVersion.VERSION_25
-    } else if (stonecutter.eval(stonecutter.current.version, ">=1.20.5")) {
+    } else if (stonecutter.eval(minecraft, ">=1.20.5")) {
         JavaVersion.VERSION_21
     } else {
         JavaVersion.VERSION_17
