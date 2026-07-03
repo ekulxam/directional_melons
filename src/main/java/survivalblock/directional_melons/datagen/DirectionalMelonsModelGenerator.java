@@ -2,14 +2,14 @@ package survivalblock.directional_melons.datagen;
 
 //? if >=1.21.2 {
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+/*? >=26 {*/ import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;  /*?} else {*/ /*import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput; *//*?}*/
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.MultiVariant;
 import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.blockstates.PropertyDispatch;
 import net.minecraft.client.data.models.model.ModelLocationUtils;
-import net.minecraft.client.renderer.block.model.VariantMutator;
+/*? >=26 {*/ import net.minecraft.client.renderer.block.dispatch.VariantMutator;  /*?} else {*/ /*import net.minecraft.client.renderer.block.model.VariantMutator; *//*?}*/
 //?} else {
 /*import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
@@ -30,7 +30,7 @@ public class DirectionalMelonsModelGenerator extends FabricModelProvider {
     //? if >=1.21.2
     public static final PropertyDispatch<VariantMutator> ROTATION_FACING = BlockModelGeneratorsAccessor.directional_melons$getRotationFacing();
 
-    public DirectionalMelonsModelGenerator(FabricDataOutput output) {
+    public DirectionalMelonsModelGenerator(/*? >=26 {*/ FabricPackOutput /*?} else {*/ /*FabricDataOutput *//*?}*/ output) {
         super(output);
     }
 

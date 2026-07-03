@@ -63,10 +63,11 @@ public class DirectionalMelons implements ModInitializer {
         *///?}
     }
 
+    // fairly sure I can't use tags because this activates before world load
     //? >=1.20.3 {
     public static boolean canNowRotate(ResourceKey<Block> resourceKey) {
-        return Objects.equals(resourceKey, net.minecraft.references.Blocks.MELON) ||
-                Objects.equals(resourceKey, net.minecraft.references.Blocks.PUMPKIN);
+        return Objects.equals(resourceKey, /*? >=26 {*/ net.minecraft.references.BlockIds.MELON  /*?} else {*/ /*net.minecraft.references.Blocks.MELON *//*?}*/) ||
+                Objects.equals(resourceKey, /*? >=26 {*/ net.minecraft.references.BlockIds.PUMPKIN  /*?} else {*/ /*net.minecraft.references.Blocks.PUMPKIN *//*?}*/);
     }
     //?}
 }

@@ -1,3 +1,2 @@
-Directional Melons 1.0.2
-- Support 26.1 (unobfuscated)
-- Remove debug annotation on BlocksMixin
+Directional Melons 1.0.3
+- Leave 26.1 snapshots and move to 26.1 release
